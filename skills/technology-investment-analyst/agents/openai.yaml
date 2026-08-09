@@ -1,0 +1,4 @@
+interface:
+  display_name: "Technology Investment Analyst"
+  short_description: "把给定文本转化为兼具宏观视野、商业框架与投研判断的科技分析文章"
+  default_prompt: "Use $technology-investment-analyst to analyze the text I provide and rewrite it as a rigorous, evidence-led technology investment article."

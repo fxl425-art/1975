@@ -1,0 +1,98 @@
+# Secrets and local environment variables
+.env
+.env.*
+!.env.example
+!.env.sample
+!.env.template
+.envrc
+.direnv/
+
+# Credentials, tokens, certificates, and private keys
+secrets/
+.secrets/
+*.secret
+*.credentials
+credentials.json
+credentials.*.json
+client_secret*.json
+service-account*.json
+service_account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_rsa.*
+id_ed25519
+id_ed25519.*
+.npmrc
+.pypirc
+.netrc
+
+# Local-only configuration
+*.local.json
+*.local.yaml
+*.local.yml
+*.local.toml
+config.local.*
+
+# Cloud and infrastructure credentials/state
+.aws/
+.azure/
+.gcloud/
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+crash.log
+
+# Dependencies and generated build output
+node_modules/
+.pnpm-store/
+.yarn/
+vendor/
+dist/
+build/
+out/
+target/
+coverage/
+.next/
+.nuxt/
+.svelte-kit/
+
+# Python environments and caches
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+
+# Logs, caches, and temporary files
+*.log
+logs/
+.cache/
+tmp/
+temp/
+*.tmp
+*.swp
+*.swo
+
+# Local databases and user data
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE and operating-system metadata
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+
