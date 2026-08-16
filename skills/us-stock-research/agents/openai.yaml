@@ -1,0 +1,4 @@
+interface:
+  display_name: "美股 SEC 风险研究"
+  short_description: "用 Codex 分析 10-K，并核验 SEC 原文证据"
+  default_prompt: "Use $us-stock-research to analyze the latest 10-K risk factors for a U.S. stock."
