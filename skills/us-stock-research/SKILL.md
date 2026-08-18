@@ -1,6 +1,6 @@
 ---
 name: us-stock-research
-description: Prepare, analyze, validate, and render evidence-backed U.S. stock research from SEC filings using EdgarTools and the active ChatGPT/Codex subscription session, without an OpenAI API key. Use when the user asks to analyze a U.S. company's latest 10-K risk factors, classify industry-wide versus company-specific risks, assess 3-5 year thesis impact, update a prior SEC risk report, or produce a Markdown report with verified SEC quotations.
+description: Prepare, analyze, validate, and render evidence-backed U.S. stock research without an OpenAI API key. Use when the user asks to analyze a U.S. company's latest 10-K risk factors from SEC filings, classify industry-wide versus company-specific risks, assess 3-5 year thesis impact, produce a Markdown report with verified SEC quotations, or compare fixed-current-market-cap and quarter-end-market-cap P/E curves against rolling four-quarter net income.
 ---
 
 # U.S. Stock Research
@@ -27,6 +27,22 @@ Use the active Codex session for judgment. Use the bundled script for SEC extrac
 
 7. Confirm exactly 10 risks and 10 verified quotations. Inspect the Markdown summary table and metadata before delivery.
 
+## Rolling P/E comparison
+
+Read `references/fixed-market-cap-pe.md`, then run:
+
+```powershell
+.\.venv\Scripts\python.exe .\.agents\skills\us-stock-research\scripts\fixed_market_cap_pe.py --ticker NVDA
+```
+
+The script retrieves quarterly net income from SEC through OpenBB and moves a four-quarter window backward one quarter at a time. It plots quarter-end-market-cap P/E as the primary line and fixed-current-market-cap P/E as a half-opacity line of the same color. Inspect the emitted SVG, CSV, and JSON manifest. Distinguish measured historical market cap from market cap estimated as quarter-end close times SEC weighted-average basic shares.
+
+Call quarter-end-market-cap rolling P/E **A line** and fixed-current-market-cap rolling P/E **B line**. To compare A lines across companies, run:
+
+```powershell
+.\.venv\Scripts\python.exe .\.agents\skills\us-stock-research\scripts\compare_a_lines.py --tickers GOOGL AAPL LITE TSM GEV NVDA
+```
+
 ## Guardrails
 
 - Treat `manifest.json` and `item_1a.txt` as authoritative.
@@ -36,6 +52,9 @@ Use the active Codex session for judgment. Use the bundled script for SEC extrac
 - Keep severity, probability, and thesis impact separate.
 - Fail closed: never weaken quotation validation merely to produce a report.
 - Preserve existing files unless the user requests cleanup.
+- Do not interpolate P/E when rolling four-quarter net income is zero or negative.
+- Keep market capitalization and net income in the same currency.
+- Match a non-trading fiscal quarter-end to the nearest prior trading date, never a later date.
 
 ## Updating a Report
 
